@@ -1,3 +1,5 @@
-<div class="placeholder">
-    {% include template_name %}
+<div class="ajax-placeholder">
+    {% if include_by_ajax_full_render %}
+        {% include template_name %}
+    {% endif %}
 </div>
