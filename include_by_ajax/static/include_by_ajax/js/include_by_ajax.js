@@ -14,10 +14,11 @@ jQuery(function($) {
     }
     // 3. Load the page again by Ajax and with additional parameter
     $.get(url, function(responseHTML) {
+        // 4. For each placeholder fill in the content
         $('<div>').append($.parseHTML(responseHTML)).find('.ajax-placeholder>*').each(function(index, element) {
             $placeholders[index].replaceWith(element);
         });
-        // 4. Trigger a special event "include_by_ajax_all_loaded"
+        // 5. Trigger a special event "include_by_ajax_all_loaded"
         $(document).trigger('include_by_ajax_all_loaded');
     }, 'html');
 });

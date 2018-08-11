@@ -1,27 +1,62 @@
-# Idea for the `{% include_by_ajax %}` template tag in Django
+# A Django App Providing the `{% include_by_ajax %}` Template Tag
 
 ## The Problem
 
-Home pages of websites usually show data aggregated from different sections. To render a homepage might take some time if the relations and filters are complex or if there are a lot of images.
+Start pages usually show data aggregated from different sections. To render a start page might take some time if the relations and filters are complex or if there are a lot of images. The best practice for performance is display the content above the fold (in the visible viewport area) as soon as possible, and then to load the rest of the page dynamically by JavaScript.
 
 ## The Solution
 
-I have an idea how to speed up the initial page load by delaying the rendering of some parts of the page (for example, those which are bellow the fold). This could be done by a new third-party app with a template tag `{% include_by_ajax template_name %}`. This template tag would work similarly like `{% include template_name %}`, but instead of the content in the page, it would render placeholders, and then by Ajax call it would access the same page again, load it with all content rendered, and would dynamically fill in the missing content to the main page.
+This app allows you to organize heavy pages into sections which are included in the main page template. The default including can be done by the `{% include template_name %}` template tag and it is rendered immediately. We are introducing a new template tag `{% include_by_ajax template_name %}` which will initially render as empty placeholder, but then will load the content by Ajax dynamically.
+
+The template included by `{% include_by_ajax template_name %}` will get all the context that would normally be passed to a normal `{% include template_name %}` template tag.
 
 ## Implementation Details
 
-Getting deeper into the details, `{% include_by_ajax %}` would check if `request.is_ajax()` and some special variable is set, e.g. `request.GET['full_render'] == 1`. In that case it would behave similarly like `{% include template_name %}`, but maybe it would wrap the content into some `<div>` with special css classes or data attributes. Otherwise, it would render just an empty `<div>` with special css classes or data attributes.
+When you use the `{% include_by_ajax template_name %}`, the page is loaded and rendered twice: once it is loaded with empty placeholders `<section class="ajax-placeholder"></section>`. Then it is loaded by Ajax again, and the placeholders get the data rendered. When the second load is complete, JavaScript replaces all the placeholders with their content. At the end, 'include_by_ajax_all_loaded' event is triggered for the document, so that you can further initialize JavaScript functions.
 
-Each template with `{% include_by_ajax %}` template tags should also load a special jQuery script, which after page load checks for placeholders, loads the same page again by Ajax call with `?full_render=1` query parameter, and would populate the content to the placeholders from the loaded page.
+## Caveats
 
-So to summarize, the workflow would be as follows:
+The templates that are included by `{% include_by_ajax template_name %}` should always wrap the content into a single html tag, like `<div>`, `<span>`, `<section>`, `<article>` or other.
 
-1. If it's a usual request to a page, all `{% include_by_ajax %}` template tags would render placeholders.
-2. On page load, a JavaScipt would check if there are any placeholders in the page and then would load the same page as an Ajax call with `?full_render=1` added to the query parameters.
-3. In the Ajax call, the page would include all content for `{% include_by_ajax %}` template tag.
-4. The JavaScript would load the HTML into a jQuery variable and then would find all contents in placeholders and would replace the placeholders in the original page with those contents.
-5. The JavaScript would trigger some custom event, that allowed doing something with the loaded HTML.
+## Installation and configuration
 
-## More
+1. Install the library to your virtual environment:
 
-Also it would be interesting to benchmark some specific websites how much faster would the pages load with this technique.
+    ```bash
+    (venv)$ pip install django-include-by-ajax
+    ```
+
+2. Add `'include_by_ajax'` to `INSTALLED_APPS`.
+
+3. In your base template, link to jQuery and `include_by_ajax.js`:
+
+    ```html
+    {% load staticfiles %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static "include_by_ajax/js/include_by_ajax.js" %}" defer></script>
+    ```
+4. In your page template, load and use the template tag for all content that is below the visible are of the page.
+
+    ```html
+    {% extends "base.html" %}
+    {% load include_by_ajax_tags %}
+    
+    {% block content %}
+        <h1>My Website</h1>
+        {% include "slideshows/includes/start_page_slideshow.html" %}
+        <!-- the fold -->
+        {% include_by_ajax "blog/includes/latest_blog_posts.html" %}
+        {% include_by_ajax "news/includes/latest_news.html" %}
+        {% include_by_ajax "gallery/includes/latest_pictures.html" %}
+    {% endblock %}
+    
+    {% block js %}
+        <script>
+        $(document).on('include_by_ajax_all_loaded', function() {
+            console.log('Now all placeholders are loaded and replaced with content');
+        })
+        </script>
+    {% endblock %}    
+    ```
+
+5. Enjoy the faster appearing web page at a cup of refreshing ice tea.

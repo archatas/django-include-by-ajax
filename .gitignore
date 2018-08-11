@@ -2,3 +2,6 @@
 __pycache__
 .vscode
 .DS_Store
+build
+dist
+django_include_by_ajax.egg-info
