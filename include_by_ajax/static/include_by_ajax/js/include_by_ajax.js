@@ -12,15 +12,12 @@ jQuery(function($) {
     } else {
         url += '&include_by_ajax_full_render=1';
     }
-    // 3. For each placeholder in that jQuery object, populate the placeholder in the document with placeholder's content
-    $placeholders.each(function(index, element) {
-        $(this).load(url + ' .ajax-placeholder:eq(' + index + ')>', function(data) {
-            $(this).replaceWith($(this).html());
-            placeholder_count--;
-            if (!placeholder_count) {
-                // 4. Trigger a special event "include_by_ajax_all_loaded"
-                $(document).trigger('include_by_ajax_all_loaded');
-            }
+    // 3. Load the page again by Ajax and with additional parameter
+    $.get(url, function(responseHTML) {
+        $('<div>').append($.parseHTML(responseHTML)).find('.ajax-placeholder>*').each(function(index, element) {
+            $placeholders[index].replaceWith(element);
         });
-    });
+        // 4. Trigger a special event "include_by_ajax_all_loaded"
+        $(document).trigger('include_by_ajax_all_loaded');
+    }, 'html');
 });
