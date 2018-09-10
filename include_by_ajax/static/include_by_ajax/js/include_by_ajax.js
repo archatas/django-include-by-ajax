@@ -6,7 +6,7 @@ jQuery(function($) {
         return;
     }
     // 2. If yes, then load the same page with full_render=1 query parameter again by Ajax
-    let url = location.href;
+    let url = location.href.replace(/#.*/, '');
     if (url.indexOf('?') === -1) {
         url += '?include_by_ajax_full_render=1';
     } else {
