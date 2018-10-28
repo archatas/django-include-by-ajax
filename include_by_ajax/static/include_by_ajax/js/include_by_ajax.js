@@ -1,6 +1,6 @@
 jQuery(function($) {
     // 1. Check if there are placeholders
-    let $placeholders = $('.ajax-placeholder');
+    let $placeholders = $('.js-ajax-placeholder');
     let placeholder_count = $placeholders.length;
     if (!placeholder_count) {
         return;
@@ -15,7 +15,7 @@ jQuery(function($) {
     // 3. Load the page again by Ajax and with additional parameter
     $.get(url, function(responseHTML) {
         // 4. For each placeholder fill in the content
-        $('<div>').append($.parseHTML(responseHTML)).find('.ajax-placeholder>*').each(function(index, element) {
+        $('<div>').append($.parseHTML(responseHTML)).find('.js-ajax-placeholder>*').each(function(index, element) {
             $placeholders[index].replaceWith(element);
         });
         // 5. Trigger a special event "include_by_ajax_all_loaded"
