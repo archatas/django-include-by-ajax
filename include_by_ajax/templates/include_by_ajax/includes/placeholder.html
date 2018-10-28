@@ -1,7 +1,13 @@
 {% spaceless %}
-<section class="ajax-placeholder">
-    {% if include_by_ajax_full_render %}
-        {% include template_name %}
+    {% if include_by_ajax_no_placeholder_wrapping %}
+        {% if include_by_ajax_full_render %}
+            {% include template_name %}
+        {% endif %}
+    {% else %}
+        <section class="ajax-placeholder">
+            {% if include_by_ajax_full_render %}
+                {% include template_name %}
+            {% endif %}
+        </section>
     {% endif %}
-</section>
 {% endspaceless %}

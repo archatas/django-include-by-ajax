@@ -35,7 +35,7 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'include_by_ajax/js/include_by_ajax.js' %}" defer></script>
     ```
-4. In your page template, load and use the template tag for all content that is below the visible are of the page.
+4. In your page template, load and use the template tag for all content that is below the visible area of the page.
 
     ```html
     {% extends "base.html" %}
@@ -59,4 +59,4 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
     {% endblock %}    
     ```
 
-5. Enjoy the faster appearing web page at a cup of refreshing ice tea.
+5. Enjoy the faster appearing web page at a cup of hot ginger and lemon tea.
