@@ -7,6 +7,8 @@
         <section class="js-ajax-placeholder ajax-placeholder">
             {% if include_by_ajax_full_render %}
                 {% include template_name %}
+            {% elif placeholder_template_name %}
+                {% include placeholder_template_name %}
             {% endif %}
         </section>
     {% endif %}
