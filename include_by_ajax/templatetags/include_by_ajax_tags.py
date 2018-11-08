@@ -7,7 +7,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('include_by_ajax/includes/placeholder.html', takes_context=True)
-def include_by_ajax(context, template_name):
+def include_by_ajax(context, template_name, placeholder_template_name=None):
     # get the app configuration
     app_config = apps.get_app_config('include_by_ajax')
     # get User-Agent
@@ -22,6 +22,7 @@ def include_by_ajax(context, template_name):
     )
     # in case of web crawler, the placeholder shouldn't be wrapped with a <section>
     context['include_by_ajax_no_placeholder_wrapping'] = is_web_crawler
-    # pass down the template path
+    # pass down the template paths
     context['template_name'] = template_name
+    context['placeholder_template_name'] = placeholder_template_name
     return context
