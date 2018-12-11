@@ -10,6 +10,8 @@ This app allows you to organize heavy pages into sections which are included in 
 
 The template included by `{% include_by_ajax template_name %}` will get all the context that would normally be passed to a normal `{% include template_name %}` template tag.
 
+You can also pass a placeholder template which will be shown until the content is loaded. For this use `{% include_by_ajax template_name placeholder_template_name=placeholder_template_name %}`
+
 ## Implementation Details
 
 When you use the `{% include_by_ajax template_name %}`, the page is loaded and rendered twice: once it is loaded with empty placeholders `<section class="ajax-placeholder"></section>`. Then it is loaded by Ajax again, and the placeholders get the data rendered. When the second load is complete, JavaScript replaces all the placeholders with their content. In the end, 'include_by_ajax_all_loaded' event is triggered for the document so that you can further initialize JavaScript functions.
@@ -47,7 +49,7 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
         <!-- the fold -->
         {% include_by_ajax "blog/includes/latest_blog_posts.html" %}
         {% include_by_ajax "news/includes/latest_news.html" %}
-        {% include_by_ajax "gallery/includes/latest_pictures.html" %}
+        {% include_by_ajax "gallery/includes/latest_pictures.html" placeholder_template_name="utils/loading.html" %}
     {% endblock %}
     
     {% block js %}
