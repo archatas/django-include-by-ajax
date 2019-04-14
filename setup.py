@@ -8,7 +8,7 @@ with open('README.md') as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    'Django>=1.8,<2.2',
+    'Django>=1.8,<2.3',
 ]
 
 setup(
