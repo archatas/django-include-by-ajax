@@ -35,7 +35,7 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
     ```html
     {% load staticfiles %}
     <script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
-    <script src="{% static 'include_by_ajax/js/include_by_ajax.js' %}" defer></script>
+    <script src="{% static 'include_by_ajax/js/include_by_ajax.min.js' %}" defer></script>
     ```
 4. In your page template, load and use the template tag for all content that is below the visible area of the page.
 

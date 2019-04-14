@@ -1,3 +1,4 @@
+/*jshint esnext:true */
 jQuery(function($) {
     // 1. Check if there are placeholders
     let $placeholders = $('.js-ajax-placeholder');
