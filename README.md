@@ -14,11 +14,19 @@ You can also pass a placeholder template which will be shown until the content i
 
 ## Implementation Details
 
-When you use the `{% include_by_ajax template_name %}`, the page is loaded and rendered twice: once it is loaded with empty placeholders `<section class="ajax-placeholder"></section>`. Then it is loaded by Ajax again, and the placeholders get the data rendered. When the second load is complete, JavaScript replaces all the placeholders with their content. In the end, 'include_by_ajax_all_loaded' event is triggered for the document so that you can further initialize JavaScript functions.
+When you use the `{% include_by_ajax template_name %}`, the page is loaded and rendered twice: once it is loaded with empty placeholders `<section class="ajax-placeholder"></section>`. Then it is loaded by Ajax again, and the placeholders get the data rendered. When the second load is complete, JavaScript replaces all the placeholders with their content.
+
+The templates that you include by Ajax can contain `<style>` and `<script>` tags which will be executed when loaded.
+
+In the end, `'include_by_ajax_all_loaded'` event is triggered for the `document` so that you can further initialize JavaScript functions.
 
 ## Caveats
 
 The templates that are included by `{% include_by_ajax template_name %}` should always wrap the content into a single html tag, like `<div>`, `<span>`, `<section>`, `<article>` or other.
+
+## Requirements
+
+The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 
 ## Installation and configuration
 
@@ -61,4 +69,4 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
     {% endblock %}    
     ```
 
-5. Enjoy the faster appearing web page at a cup of hot ginger and lemon tea.
+5. Enjoy the faster-appearing web page at a glass of fresh mint tea.
