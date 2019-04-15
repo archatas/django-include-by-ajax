@@ -36,6 +36,6 @@ setup(
     name='django-include-by-ajax',
     packages=find_packages(include=['include_by_ajax']),
     url='https://github.com/archatas/django-include-by-ajax',
-    version='0.5.0',
+    version='1.0.0',
     zip_safe=False,
 )
