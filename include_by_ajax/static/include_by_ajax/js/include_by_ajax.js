@@ -18,14 +18,29 @@ jQuery(function($) {
         // 4. For each placeholder fill in the content
         $('<div>').append($.parseHTML(responseHTML, document, true)).find('.js-ajax-placeholder>*').each(function(index, element) {
             $placeholders[index].replaceWith(element);
+            let scriptsStack = [];
+            // collect scripts to a stack
             $(element).find('script').each(function() {
-                let src = $(this).attr('src');
-                if (src) {
-                    $.getScript(src);
-                } else {
-                    $.globalEval($(this).html());
-                }
+                scriptsStack.push($(this));
             });
+            // load and execute each script from the stack one by one
+            function executeNextScriptFromStack() {
+                let $script = scriptsStack.shift();
+                if ($script) {
+                    let src = $script.attr('src');
+                    if (src) {
+                        $.getScript(src).done(function(script, textStatus) {
+                            executeNextScriptFromStack();
+                        }).fail(function(jqxhr, settings, exception) {
+                            executeNextScriptFromStack();
+                        });
+                    } else {
+                        $.globalEval($script.html());
+                        executeNextScriptFromStack();
+                    }
+                }
+            }
+            executeNextScriptFromStack();
         });
         // 5. Trigger a special event "include_by_ajax_all_loaded"
         $(document).trigger('include_by_ajax_all_loaded');
