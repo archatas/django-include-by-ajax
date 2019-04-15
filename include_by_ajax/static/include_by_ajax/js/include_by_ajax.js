@@ -16,8 +16,16 @@ jQuery(function($) {
     // 3. Load the page again by Ajax and with additional parameter
     $.get(url, function(responseHTML) {
         // 4. For each placeholder fill in the content
-        $('<div>').append($.parseHTML(responseHTML)).find('.js-ajax-placeholder>*').each(function(index, element) {
+        $('<div>').append($.parseHTML(responseHTML, document, true)).find('.js-ajax-placeholder>*').each(function(index, element) {
             $placeholders[index].replaceWith(element);
+            $(element).find('script').each(function() {
+                let src = $(this).attr('src');
+                if (src) {
+                    $.getScript(src);
+                } else {
+                    $.globalEval($(this).html());
+                }
+            });
         });
         // 5. Trigger a special event "include_by_ajax_all_loaded"
         $(document).trigger('include_by_ajax_all_loaded');
