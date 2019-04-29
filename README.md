@@ -1,3 +1,5 @@
+[![pypi](https://img.shields.io/pypi/v/django-include-by-ajax.svg)](https://pypi.python.org/pypi/django-include-by-ajax/)
+
 # A Django App Providing the `{% include_by_ajax %}` Template Tag
 
 ## The Problem
