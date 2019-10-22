@@ -30,7 +30,7 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
 
 The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 
-## Installation and configuration
+## Installation and Configuration
 
 1. Install the library to your virtual environment:
 
@@ -72,3 +72,10 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
     ```
 
 5. Enjoy the faster-appearing web page at a glass of fresh mint tea.
+
+## Projects Using django-include-by-ajax
+
+- [Strategic prioritizer 1st things 1st](https://www.1st-things-1st.com/) ![1st things 1st Logo](https://www.1st-things-1st.com/static/20191003061720/webapp/img/favicon/favicon-16x16.png)
+
+If you are also using the app, don't hesitate to add your site to the list.
+
