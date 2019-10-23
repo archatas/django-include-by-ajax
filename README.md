@@ -77,5 +77,5 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 
 ![1st things 1st Logo](https://www.1st-things-1st.com/static/20191003061720/webapp/img/favicon/favicon-16x16.png) [Strategic prioritizer 1st things 1st](https://www.1st-things-1st.com/)
 
-If you are also using the app, don't hesitate to add your site to the list.
+_If you are also using the app, don't hesitate to add your site to the list…_
 
