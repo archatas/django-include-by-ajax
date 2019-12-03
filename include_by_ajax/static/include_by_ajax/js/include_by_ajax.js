@@ -17,7 +17,7 @@ jQuery(function($) {
     $.get(url, function(responseHTML) {
         // 4. For each placeholder fill in the content
         $('<div>').append($.parseHTML(responseHTML, document, true)).find('.js-ajax-placeholder>*').each(function(index, element) {
-            $placeholders[index].replaceWith(element);
+            $($placeholders[index]).replaceWith(element);
             let scriptsStack = [];
             // collect scripts to a stack
             $(element).find('script').each(function() {
