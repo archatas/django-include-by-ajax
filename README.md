@@ -43,7 +43,7 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 3. In your base template, link to jQuery and `include_by_ajax.js`:
 
     ```html
-    {% load staticfiles %}
+    {% load static %}
     <script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
     <script src="{% static 'include_by_ajax/js/include_by_ajax.min.js' %}" defer></script>
     ```
