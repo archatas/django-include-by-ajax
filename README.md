@@ -73,14 +73,14 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 
 5. Enjoy the faster-appearing web page at a glass of fresh mint tea.
 
-## Projects Using django-include-by-ajax
-
-![1st things 1st Logo](https://www.1st-things-1st.com/static/20191003061720/webapp/img/favicon/favicon-16x16.png) [Strategic prioritizer 1st things 1st](https://www.1st-things-1st.com/)
-
-_If you are also using the app, don't hesitate to add your site to the list…_
-
 ## Contributors
 
 Thanks to everybody who contributed to this project:
 
 [![Contributors](https://contributors-img.firebaseapp.com/image?repo=archatas/django-include-by-ajax)](https://github.com/archatas/django-include-by-ajax/graphs/contributors)
+
+## Projects Using django-include-by-ajax
+
+![1st things 1st Logo](https://www.1st-things-1st.com/static/20191003061720/webapp/img/favicon/favicon-16x16.png) [Strategic prioritizer 1st things 1st](https://www.1st-things-1st.com/)
+
+_If you are also using the app, don't hesitate to add your site to the list…_
