@@ -71,7 +71,7 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
     {% endblock %}    
     ```
 
-5. Enjoy the faster-appearing web page at a glass of fresh mint tea.
+5. Enjoy the faster-appearing web page at a glass of gingerbread latte.
 
 ## Contributors
 
