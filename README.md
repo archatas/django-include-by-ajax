@@ -79,3 +79,8 @@ The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
 
 _If you are also using the app, don't hesitate to add your site to the list…_
 
+## Contributors
+
+Thanks to everybody who contributed to this project:
+
+[![Contributors](https://contributors-img.firebaseapp.com/image?repo=archatas/django-include-by-ajax)](https://github.com/archatas/django-include-by-ajax/graphs/contributors)
