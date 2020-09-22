@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- All requests by JavaScript are done asynchronously.
+
 ## [2.0.0] - 2019-12-03
 
 ### Added
