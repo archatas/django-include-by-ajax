@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Django 3.1 support
+
 ### Changed
 
 - All requests by JavaScript are done asynchronously.
