@@ -31,7 +31,7 @@ The templates that are included by `{% include_by_ajax template_name %}` should 
 
 ## Requirements
 
-The app works with Django 1.8+ on the server and jQuery 3.x in the frontend.
+The app works with Django 2.2+ on the server and jQuery 3.x in the frontend.
 
 ## Installation and Configuration
 
