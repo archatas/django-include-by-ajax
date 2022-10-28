@@ -9,10 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Django 3.1 support
+- Django 3.2 support
+- Django 4.0 support
+- Django 4.1 support
 
 ### Changed
 
 - All requests by JavaScript are done asynchronously.
+- Requests for Googlebot are not treated separately, because it can handle JavaScript.
+
+### Removed
+
+- Django 1.8 support
+- Django 1.11 support
+- Django 2.0 support
+- Django 2.1 support
 
 ## [2.0.0] - 2019-12-03
 
